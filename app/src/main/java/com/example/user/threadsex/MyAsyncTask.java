@@ -22,14 +22,13 @@ public class MyAsyncTask extends AppCompatActivity {
         setContentView(R.layout.async_activity);
         Log.i(TAG, "onCreateAsync");
 
-        final View mainView = findViewById(R.id.mainView);
         textView = findViewById(R.id.TextNum);
 
         Button create = findViewById(R.id.CreateButton);
         create.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.i(TAG, "onClickCreateAsync");
-                asyncTask = new AsyncTaskActivity(mainView, textView);
+                asyncTask = new AsyncTaskActivity(textView);
             }
         });
 

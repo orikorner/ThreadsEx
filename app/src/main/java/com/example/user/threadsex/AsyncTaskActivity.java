@@ -16,25 +16,23 @@ public class AsyncTaskActivity extends AsyncTask<Object, Integer, Void> {
 
     private String TAG = "AsyncTask";
     @SuppressLint("StaticFieldLeak")
-    private View view;
-    @SuppressLint("StaticFieldLeak")
     private TextView textView;
 
 
-    AsyncTaskActivity(View view, TextView textView)
+    AsyncTaskActivity(TextView textView)
     {
         Log.i(TAG,"ConstructorAsync");
-        this.view = view;
         this.textView = textView;
     }
 
     @Override
     protected Void doInBackground(Object[] voids) {
         Log.i(TAG,"doInBackgroundAsync");
-        for(int i =0; i < 10; i++)
+        for(int i = 1; i < 11; i++)
         {
-            if (isCancelled())
+            if (isCancelled()) {
                 break;
+            }
             publishProgress(i);
             SystemClock.sleep(500);
         }
@@ -45,12 +43,7 @@ public class AsyncTaskActivity extends AsyncTask<Object, Integer, Void> {
     protected void onPreExecute() {
         Log.i(TAG,"onPreExecuteAsync");
         super.onPreExecute();
-//        view.findViewById(R.id.AsyncTaskActivity).setVisibility(View.INVISIBLE);
-//        view.findViewById(R.id.ThreadsActivity).setVisibility(View.INVISIBLE);
-//        view.findViewById(R.id.CancelButton).setVisibility(View.VISIBLE);
-//        view.findViewById(R.id.CreateButton).setVisibility(View.VISIBLE);
-//        view.findViewById(R.id.StartButton).setVisibility(View.VISIBLE);
-//        view.findViewById(R.id.TextNum).setVisibility(View.VISIBLE);
+        textView.setText("");
     }
 
     @Override
@@ -62,14 +55,16 @@ public class AsyncTaskActivity extends AsyncTask<Object, Integer, Void> {
     }
 
     @Override
+    protected void onCancelled() {
+        super.onCancelled();
+        Log.i(TAG,"onCanceledAsync");
+        textView.setText("");
+    }
+
+    @Override
     protected void onPostExecute(Void aVoid) {
         Log.i(TAG, "onPostExecuteAsync");
         super.onPostExecute(aVoid);
-//        view.findViewById(R.id.AsyncTaskActivity).setVisibility(View.VISIBLE);
-//        view.findViewById(R.id.ThreadsActivity).setVisibility(View.VISIBLE);
-//        view.findViewById(R.id.CancelButton).setVisibility(View.INVISIBLE);
-//        view.findViewById(R.id.CreateButton).setVisibility(View.INVISIBLE);
-//        view.findViewById(R.id.StartButton).setVisibility(View.INVISIBLE);
-//        view.findViewById(R.id.TextNum).setVisibility(View.INVISIBLE);
+        textView.setText("Done");
     }
 }
