@@ -1,16 +1,10 @@
 package com.example.user.threadsex;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.Objects;
 
 public class AsyncTaskActivity extends AsyncTask<Object, Integer, Void> {
 
