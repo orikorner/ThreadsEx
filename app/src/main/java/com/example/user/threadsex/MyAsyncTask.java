@@ -19,8 +19,8 @@ public class MyAsyncTask extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.async_activity);
+        Log.i(TAG, "onCreateAsync");
 
         final View mainView = findViewById(R.id.mainView);
         textView = findViewById(R.id.TextNum);
@@ -28,6 +28,7 @@ public class MyAsyncTask extends AppCompatActivity {
         Button create = findViewById(R.id.CreateButton);
         create.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Log.i(TAG, "onClickCreateAsync");
                 asyncTask = new AsyncTaskActivity(mainView, textView);
             }
         });
@@ -35,13 +36,15 @@ public class MyAsyncTask extends AppCompatActivity {
         Button cancel = findViewById(R.id.CancelButton);
         cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                Log.i(TAG, "onClickCancelAsync");
+                asyncTask.cancel(true);
             }
         });
 
         Button start = findViewById(R.id.StartButton);
         start.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Log.i(TAG, "onClickStartAsync");
                 asyncTask.execute();
             }
         });

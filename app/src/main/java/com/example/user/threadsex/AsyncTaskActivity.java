@@ -23,13 +23,14 @@ public class AsyncTaskActivity extends AsyncTask<Object, Integer, Void> {
 
     AsyncTaskActivity(View view, TextView textView)
     {
+        Log.i(TAG,"ConstructorAsync");
         this.view = view;
         this.textView = textView;
     }
 
     @Override
     protected Void doInBackground(Object[] voids) {
-        Log.i(TAG,"doInBackground");
+        Log.i(TAG,"doInBackgroundAsync");
         for(int i =0; i < 10; i++)
         {
             if (isCancelled())
@@ -42,18 +43,19 @@ public class AsyncTaskActivity extends AsyncTask<Object, Integer, Void> {
 
     @Override
     protected void onPreExecute() {
+        Log.i(TAG,"onPreExecuteAsync");
         super.onPreExecute();
-        view.findViewById(R.id.AsyncTaskActivity).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.ThreadsActivity).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.CancelButton).setVisibility(View.VISIBLE);
-        view.findViewById(R.id.CreateButton).setVisibility(View.VISIBLE);
-        view.findViewById(R.id.StartButton).setVisibility(View.VISIBLE);
-        view.findViewById(R.id.TextNum).setVisibility(View.VISIBLE);
+//        view.findViewById(R.id.AsyncTaskActivity).setVisibility(View.INVISIBLE);
+//        view.findViewById(R.id.ThreadsActivity).setVisibility(View.INVISIBLE);
+//        view.findViewById(R.id.CancelButton).setVisibility(View.VISIBLE);
+//        view.findViewById(R.id.CreateButton).setVisibility(View.VISIBLE);
+//        view.findViewById(R.id.StartButton).setVisibility(View.VISIBLE);
+//        view.findViewById(R.id.TextNum).setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void onProgressUpdate(Integer... values) {
-        Log.i(TAG, "onProgressUpdate");
+        Log.i(TAG, "onProgressUpdateAsync");
         super.onProgressUpdate(values);
         String curr = String.valueOf(values[0]);
         textView.setText(curr);
@@ -61,13 +63,13 @@ public class AsyncTaskActivity extends AsyncTask<Object, Integer, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        Log.i(TAG, "onPostExecute");
+        Log.i(TAG, "onPostExecuteAsync");
         super.onPostExecute(aVoid);
-        view.findViewById(R.id.AsyncTaskActivity).setVisibility(View.VISIBLE);
-        view.findViewById(R.id.ThreadsActivity).setVisibility(View.VISIBLE);
-        view.findViewById(R.id.CancelButton).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.CreateButton).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.StartButton).setVisibility(View.INVISIBLE);
-        view.findViewById(R.id.TextNum).setVisibility(View.INVISIBLE);
+//        view.findViewById(R.id.AsyncTaskActivity).setVisibility(View.VISIBLE);
+//        view.findViewById(R.id.ThreadsActivity).setVisibility(View.VISIBLE);
+//        view.findViewById(R.id.CancelButton).setVisibility(View.INVISIBLE);
+//        view.findViewById(R.id.CreateButton).setVisibility(View.INVISIBLE);
+//        view.findViewById(R.id.StartButton).setVisibility(View.INVISIBLE);
+//        view.findViewById(R.id.TextNum).setVisibility(View.INVISIBLE);
     }
 }

@@ -21,11 +21,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
         Button asyncButton = findViewById(R.id.AsyncTaskActivity);
         asyncButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Log.i(TAG, "onClickAsync");
                 Intent myIntent = new Intent(MainActivity.this, MyAsyncTask.class);
                 MainActivity.this.startActivity(myIntent);
             }
@@ -34,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
         Button threadButton = findViewById(R.id.ThreadsActivity);
         threadButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                Log.i(TAG, "onClickThread");
+                Intent myIntent = new Intent(MainActivity.this, ThreadsActivity.class);
+                MainActivity.this.startActivity(myIntent);
             }
         });
     }
