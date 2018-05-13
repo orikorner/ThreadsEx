@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class AsyncTaskActivity extends AsyncTask<Object, Integer, Void> {
 
-    private String TAG = "Async";
+    private String TAG = "AsyncTask";
     @SuppressLint("StaticFieldLeak")
     private View view;
     @SuppressLint("StaticFieldLeak")
@@ -32,6 +32,8 @@ public class AsyncTaskActivity extends AsyncTask<Object, Integer, Void> {
         Log.i(TAG,"doInBackground");
         for(int i =0; i < 10; i++)
         {
+            if (isCancelled())
+                break;
             publishProgress(i);
             SystemClock.sleep(500);
         }
@@ -51,9 +53,21 @@ public class AsyncTaskActivity extends AsyncTask<Object, Integer, Void> {
 
     @Override
     protected void onProgressUpdate(Integer... values) {
-        Log.i(TAG, "onProgressUpdateAsync");
+        Log.i(TAG, "onProgressUpdate");
         super.onProgressUpdate(values);
         String curr = String.valueOf(values[0]);
         textView.setText(curr);
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        Log.i(TAG, "onPostExecute");
+        super.onPostExecute(aVoid);
+        view.findViewById(R.id.AsyncTaskActivity).setVisibility(View.VISIBLE);
+        view.findViewById(R.id.ThreadsActivity).setVisibility(View.VISIBLE);
+        view.findViewById(R.id.CancelButton).setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.CreateButton).setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.StartButton).setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.TextNum).setVisibility(View.INVISIBLE);
     }
 }
